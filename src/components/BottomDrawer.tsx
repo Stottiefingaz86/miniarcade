@@ -219,9 +219,6 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
               <h2 className="text-2xl font-black text-black tracking-tight">
                 MINI CASINO
               </h2>
-              <div className="text-sm text-gray-600 font-medium">
-                Balance: <span className="text-green-600 font-bold">$542.00</span>
-              </div>
             </div>
             <div className="flex items-center gap-2">
               <button
