@@ -7,6 +7,10 @@ import diceImage from './dice.png'
 import minesImage from './mines.png'
 import plinkoImage from './plinko.png'
 import wheelImage from './wheel.png'
+import hiloImage from './hilo.png'
+import keniImage from './keni.png'
+import limboImage from './Limbo.png'
+import videoPokerImage from './video poker.png'
 
 interface BottomDrawerProps {
   isOpen: boolean
@@ -22,7 +26,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
   const [dragStartTime, setDragStartTime] = useState(0)
   const [isMinimized, setIsMinimized] = useState(false)
   
-  // Casino games data - Only games with PNG images
+  // Casino games data - All games with PNG images
   const casinoGames = [
     {
       id: 'blackjack',
@@ -65,6 +69,34 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
       image: wheelImage,
       color: 'from-red-500 to-orange-500',
       description: 'Spin the wheel and bet on your lucky number!'
+    },
+    {
+      id: 'hilo',
+      name: 'Hi-Lo',
+      image: hiloImage,
+      color: 'from-indigo-500 to-purple-500',
+      description: 'Guess if the next card is higher or lower!'
+    },
+    {
+      id: 'keni',
+      name: 'Keni',
+      image: keniImage,
+      color: 'from-pink-500 to-rose-500',
+      description: 'Pick your numbers and hope for the best!'
+    },
+    {
+      id: 'limbo',
+      name: 'Limbo',
+      image: limboImage,
+      color: 'from-cyan-500 to-blue-500',
+      description: 'Set your multiplier and watch it rise!'
+    },
+    {
+      id: 'video-poker',
+      name: 'Video Poker',
+      image: videoPokerImage,
+      color: 'from-orange-500 to-red-500',
+      description: 'Play poker against the machine!'
     }
   ]
 
@@ -184,8 +216,8 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         {!showBlackjack && (
           <div className="flex items-center justify-between px-6 pb-4">
             <div className="flex flex-col">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">
-                🎰 MINI CASINO 🎰
+              <h2 className="text-2xl font-bold text-black">
+                MINI CASINO
               </h2>
               <div className="text-sm text-gray-600 font-medium">
                 Balance: <span className="text-green-600 font-bold">$542.00</span>
@@ -217,7 +249,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                 return (
                   <button
                     key={game.id}
-                    className="relative bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-32 h-32 overflow-hidden flex-shrink-0"
+                    className="relative bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-24 h-32 overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg"
                     onClick={() => {
                       if (game.id === 'blackjack') {
                         setShowBlackjack(true)
@@ -226,12 +258,14 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                       }
                     }}
                   >
-                    {/* Full image that fills the entire tile */}
+                    {/* Netflix DVD-style image */}
                     <img 
                       src={game.image} 
                       alt={game.name}
-                      className="w-full h-full object-cover rounded-2xl"
+                      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-200"
                     />
+                    {/* Subtle overlay on hover */}
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200 rounded-lg" />
                   </button>
                 )
               })}
