@@ -249,7 +249,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                 return (
                   <button
                     key={game.id}
-                    className="relative rounded-lg transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-24 h-32 overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg"
+                    className="relative w-24 h-32 rounded-lg overflow-hidden transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group flex-shrink-0 shadow-sm hover:shadow-lg"
                     onClick={() => {
                       if (game.id === 'blackjack') {
                         setShowBlackjack(true)
@@ -258,14 +258,14 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                       }
                     }}
                   >
-                    {/* Full image that fills entire tile with rounded corners */}
+                    {/* Full image that fills entire rounded container */}
                     <img 
                       src={game.image} 
                       alt={game.name}
-                      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-200"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                     {/* Subtle overlay on hover */}
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200 rounded-lg" />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200" />
                   </button>
                 )
               })}
