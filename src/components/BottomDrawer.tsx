@@ -246,7 +246,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                 return (
                   <button
                     key={game.id}
-                    className="relative w-32 h-32 rounded-lg overflow-hidden transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group flex-shrink-0 shadow-sm hover:shadow-lg"
+                    className="relative w-24 h-44 rounded-lg overflow-hidden transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group flex-shrink-0 shadow-sm hover:shadow-lg"
                     onClick={() => {
                       if (game.id === 'blackjack') {
                         setShowBlackjack(true)
