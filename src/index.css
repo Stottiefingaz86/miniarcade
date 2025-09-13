@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevent zoom on double tap */
+    touch-action: manipulation;
+  }
+  
+  #root {
+    height: 100%;
+    position: relative;
+  }
+  
+  /* Prevent text selection during drag */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Smooth scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    body {
+      /* Prevent pull-to-refresh on mobile */
+      overscroll-behavior-y: contain;
+    }
+    
+    /* Improve touch targets */
+    button, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+@layer components {
+  .chat-head-shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .drawer-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .game-tile-hover {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .game-tile-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .game-tile-hover:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hide scrollbars for carousel */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Pulse ring animation for chat head */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.75;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+}
