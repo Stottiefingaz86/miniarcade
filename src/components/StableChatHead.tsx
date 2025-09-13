@@ -149,15 +149,15 @@ const StableChatHead: React.FC = () => {
   }
 
   // Keep inside viewport
-  const clampToViewport = () => {
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-    const size = bubbleSize()
-    const maxX = vw - size - margin
-    const maxY = vh - size - margin
-    stateRef.current.x = Math.max(margin, Math.min(stateRef.current.x, maxX))
-    stateRef.current.y = Math.max(margin, Math.min(stateRef.current.y, maxY))
-  }
+  // const clampToViewport = () => {
+  //   const vw = window.innerWidth
+  //   const vh = window.innerHeight
+  //   const size = bubbleSize()
+  //   const maxX = vw - size - margin
+  //   const maxY = vh - size - margin
+  //   stateRef.current.x = Math.max(margin, Math.min(stateRef.current.x, maxX))
+  //   stateRef.current.y = Math.max(margin, Math.min(stateRef.current.y, maxY))
+  // }
 
   // Spring-based edge snap
   // const edgeSnapSpring = () => {
