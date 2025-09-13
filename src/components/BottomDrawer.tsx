@@ -11,6 +11,7 @@ import hiloImage from './hilo.png'
 import keniImage from './keni.png'
 import limboImage from './Limbo.png'
 import videoPokerImage from './video poker.png'
+import miniCasinoLogo from './minicasinologo.svg'
 
 interface BottomDrawerProps {
   isOpen: boolean
@@ -220,9 +221,11 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         {!showBlackjack && (
           <div className="flex items-center justify-between px-6 pb-4">
             <div className="flex flex-col">
-              <h2 className="text-2xl font-black text-black tracking-tight">
-                MINI CASINO
-              </h2>
+              <img 
+                src={miniCasinoLogo} 
+                alt="Mini Casino" 
+                className="h-8 w-auto"
+              />
             </div>
             <div className="flex items-center gap-2">
               <button
