@@ -216,7 +216,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         {!showBlackjack && (
           <div className="flex items-center justify-between px-6 pb-4">
             <div className="flex flex-col">
-              <h2 className="text-2xl font-bold text-black">
+              <h2 className="text-2xl font-black text-black tracking-tight">
                 MINI CASINO
               </h2>
               <div className="text-sm text-gray-600 font-medium">
@@ -249,7 +249,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                 return (
                   <button
                     key={game.id}
-                    className="relative bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-24 h-32 overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg"
+                    className="relative rounded-lg transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-24 h-32 overflow-hidden flex-shrink-0 shadow-sm hover:shadow-lg"
                     onClick={() => {
                       if (game.id === 'blackjack') {
                         setShowBlackjack(true)
@@ -258,7 +258,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                       }
                     }}
                   >
-                    {/* Netflix DVD-style image */}
+                    {/* Full image that fills entire tile with rounded corners */}
                     <img 
                       src={game.image} 
                       alt={game.name}
