@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import BottomDrawer from './BottomDrawer'
-// import cherryIcon from './cherry.svg'
+import cherryIcon from './cherry.svg'
 
 const StableChatHead: React.FC = () => {
   const bubbleRef = useRef<HTMLDivElement>(null)
@@ -381,7 +381,13 @@ const StableChatHead: React.FC = () => {
         />
         
         <div className="w-full h-full flex items-center justify-center relative z-10">
-          <div className="text-white text-2xl font-bold">🍒</div>
+          <img 
+            src={cherryIcon} 
+            alt="Cherry" 
+            width={24} 
+            height={24}
+            className="drop-shadow-sm filter brightness-0 invert"
+          />
         </div>
       </div>
 
