@@ -206,7 +206,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                     return (
                       <button
                         key={game.id}
-                        className="relative bg-white rounded-2xl p-4 border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-32"
+                        className="relative bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-32 h-32 overflow-hidden"
                         onClick={() => {
                           if (game.id === 'blackjack') {
                             setShowBlackjack(true)
@@ -215,22 +215,12 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                           }
                         }}
                       >
-                        {/* Background gradient */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-5 rounded-2xl group-hover:opacity-10 transition-opacity duration-200`} />
-                        
-                        {/* Image container */}
-                        <div className={`relative w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br ${game.color} flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200 overflow-hidden`}>
-                          <img 
-                            src={game.image} 
-                            alt={game.name}
-                            className="w-8 h-8 object-contain"
-                          />
-                        </div>
-                        
-                        {/* Game name */}
-                        <h3 className="text-sm font-semibold text-gray-800 text-center leading-tight">
-                          {game.name}
-                        </h3>
+                        {/* Full image that fills the entire tile */}
+                        <img 
+                          src={game.image} 
+                          alt={game.name}
+                          className="w-full h-full object-cover rounded-2xl"
+                        />
                       </button>
                     )
                   })}
