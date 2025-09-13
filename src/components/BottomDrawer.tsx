@@ -259,7 +259,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                     <img 
                       src={game.image} 
                       alt={game.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-200"
+                      className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-200"
                     />
                     {/* Subtle overlay on hover */}
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200" />
