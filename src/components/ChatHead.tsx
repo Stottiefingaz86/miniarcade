@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { motion, PanInfo, animate } from 'framer-motion'
+import { motion, PanInfo } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import BottomDrawer from './BottomDrawer'
 
@@ -60,7 +60,7 @@ const ChatHead: React.FC = () => {
     dragStartTime.current = Date.now()
   }
   
-  const handleDrag = (event: any, info: PanInfo) => {
+  const handleDrag = (_event: any, info: PanInfo) => {
     const distance = Math.sqrt(info.delta.x ** 2 + info.delta.y ** 2)
     if (distance > 5) {
       setHasMoved(true)
@@ -70,7 +70,7 @@ const ChatHead: React.FC = () => {
     // We'll only update position on drag end for snapping
   }
   
-  const handleDragEnd = (event: any, info: PanInfo) => {
+  const handleDragEnd = (_event: any, info: PanInfo) => {
     setIsDragging(false)
     
     const dragDuration = Date.now() - dragStartTime.current
@@ -138,6 +138,10 @@ const ChatHead: React.FC = () => {
         animate={{
           x: position.x,
           y: position.y,
+          scale: isDragging ? 1.2 : [1, 1.05, 1],
+          boxShadow: isDragging 
+            ? "0 30px 60px rgba(59, 130, 246, 0.6)" 
+            : "0 10px 30px rgba(0, 0, 0, 0.2)"
         }}
         whileHover={{ 
           scale: 1.1,
@@ -146,12 +150,6 @@ const ChatHead: React.FC = () => {
         whileTap={{ 
           scale: 0.95,
           boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
-        }}
-        animate={{
-          scale: isDragging ? 1.2 : [1, 1.05, 1],
-          boxShadow: isDragging 
-            ? "0 30px 60px rgba(59, 130, 246, 0.6)" 
-            : "0 10px 30px rgba(0, 0, 0, 0.2)"
         }}
         transition={{
           scale: {

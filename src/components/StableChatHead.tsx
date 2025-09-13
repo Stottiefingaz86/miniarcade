@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Zap, Target } from 'lucide-react'
 import BottomDrawer from './BottomDrawer'
-import cherryIcon from './cherry.svg'
+// import cherryIcon from './cherry.svg'
 
 const StableChatHead: React.FC = () => {
   const bubbleRef = useRef<HTMLDivElement>(null)
@@ -101,16 +100,16 @@ const StableChatHead: React.FC = () => {
     return Math.max(margin, Math.min(val, maxY))
   }
 
-  const nearestEdgeTargetX = (curX: number) => {
-    const size = bubbleSize()
-    const left = margin, right = window.innerWidth - size - margin
-    const toLeft = Math.abs(curX - left)
-    const toRight = Math.abs(curX - right)
-    // Magnetic pull if within MAGNET_PX
-    if (toLeft < MAGNET_PX) return left
-    if (toRight < MAGNET_PX) return right
-    return null
-  }
+  // const nearestEdgeTargetX = (curX: number) => {
+  //   const size = bubbleSize()
+  //   const left = margin, right = window.innerWidth - size - margin
+  //   const toLeft = Math.abs(curX - left)
+  //   const toRight = Math.abs(curX - right)
+  //   // Magnetic pull if within MAGNET_PX
+  //   if (toLeft < MAGNET_PX) return left
+  //   if (toRight < MAGNET_PX) return right
+  //   return null
+  // }
 
   // Calculate anchor points along the rail
   const getAnchorPoints = () => {
@@ -153,6 +152,7 @@ const StableChatHead: React.FC = () => {
   const clampToViewport = () => {
     const vw = window.innerWidth
     const vh = window.innerHeight
+    const size = bubbleSize()
     const maxX = vw - size - margin
     const maxY = vh - size - margin
     stateRef.current.x = Math.max(margin, Math.min(stateRef.current.x, maxX))
@@ -160,14 +160,14 @@ const StableChatHead: React.FC = () => {
   }
 
   // Spring-based edge snap
-  const edgeSnapSpring = () => {
-    const size = bubbleSize()
-    const left = margin
-    const right = window.innerWidth - size - margin
-    const targetX = (Math.abs(stateRef.current.x - left) < Math.abs(stateRef.current.x - right)) ? left : right
-    stateRef.current.rail = (targetX === left) ? 'left' : 'right'
-    animateTo({ x: targetX, y: clampY(stateRef.current.y) })
-  }
+  // const edgeSnapSpring = () => {
+  //   const size = bubbleSize()
+  //   const left = margin
+  //   const right = window.innerWidth - size - margin
+  //   const targetX = (Math.abs(stateRef.current.x - left) < Math.abs(stateRef.current.x - right)) ? left : right
+  //   stateRef.current.rail = (targetX === left) ? 'left' : 'right'
+  //   animateTo({ x: targetX, y: clampY(stateRef.current.y) })
+  // }
 
   // Spring animation loop
   const animateTo = (target: { x: number, y: number }, done?: () => void) => {
@@ -180,7 +180,7 @@ const StableChatHead: React.FC = () => {
 
     const tick = () => {
       // Rubber-band on Y if beyond bounds while animating
-      const by = boundY(state.sy.x)
+      // const by = boundY(state.sy.x)
       const ty = target.y
       const yTarget = ty
 
@@ -381,13 +381,7 @@ const StableChatHead: React.FC = () => {
         />
         
         <div className="w-full h-full flex items-center justify-center relative z-10">
-          <img 
-            src={cherryIcon} 
-            alt="Cherry" 
-            width={24} 
-            height={24}
-            className="drop-shadow-sm filter brightness-0 invert"
-          />
+          <div className="text-white text-2xl font-bold">🍒</div>
         </div>
       </div>
 

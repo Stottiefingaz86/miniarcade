@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { X, Zap, Target, Bomb, Circle, Coins, Grid3X3, ArrowLeft } from 'lucide-react'
-import blackjackImage from './blackjack.png'
+// import blackjackImage from './blackjack.png'
 
 interface BottomDrawerProps {
   isOpen: boolean
@@ -253,11 +253,9 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
             
             {/* Image that determines drawer size - hide when minimized */}
             {!isMinimized && (
-              <img 
-                src={blackjackImage} 
-                alt="Blackjack Game" 
-                className="w-full h-auto block"
-              />
+              <div className="w-full h-96 bg-green-800 flex items-center justify-center text-white text-2xl">
+                Blackjack Game
+              </div>
             )}
           </div>
         )}
