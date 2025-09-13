@@ -174,19 +174,21 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
   }, [isOpen])
   
   return (
-    <div className={`fixed inset-0 z-40 flex items-end transition-opacity duration-300 ${
-      isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+    <div className={`fixed inset-0 z-40 flex items-end ${
+      isOpen ? 'pointer-events-auto' : 'pointer-events-none'
     }`}>
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/50"
+        className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
+          isOpen ? 'opacity-100' : 'opacity-0'
+        }`}
         onClick={onClose}
       />
       
       {/* Drawer */}
       <div 
         ref={drawerRef}
-        className={`relative w-full rounded-t-3xl shadow-2xl overflow-hidden transition-transform duration-500 ease-out transform ${showBlackjack ? 'h-auto' : 'max-h-[85vh] bg-white'} ${
+        className={`relative w-full rounded-t-3xl shadow-2xl overflow-hidden transition-transform duration-300 ease-out transform ${showBlackjack ? 'h-auto' : 'max-h-[85vh] bg-white'} ${
           isOpen ? 'translate-y-0' : 'translate-y-full'
         }`}
         style={{ 
@@ -241,8 +243,8 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         
         {/* Games Carousel - only show when not in blackjack mode and not minimized */}
         {!showBlackjack && !isMinimized && (
-          <div className="pb-4">
-            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2 px-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="pb-2">
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide px-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {/* Single row of all games */}
               {casinoGames.map((game) => {
                 return (
@@ -297,7 +299,7 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         )}
         
         {/* Bottom padding for safe area - always show */}
-        <div className="h-6" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }} />
+        <div className="h-2" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }} />
       </div>
     </div>
   )
