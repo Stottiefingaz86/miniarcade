@@ -356,16 +356,17 @@ const StableChatHead: React.FC = () => {
   return (
     <>
       {/* Rock-solid draggable chat head */}
-      <div
-        ref={bubbleRef}
-        className={`fixed w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-2xl cursor-pointer select-none ${isDrawerOpen ? 'z-30' : 'z-50'}`}
-        style={{
-          left: 0,
-          top: 0,
-          touchAction: 'none',
-          willChange: 'transform',
-          transform: 'translate3d(0,0,0)'
-        }}
+        <div
+          ref={bubbleRef}
+          className={`fixed w-16 h-16 rounded-full shadow-2xl cursor-pointer select-none ${isDrawerOpen ? 'z-30' : 'z-50'}`}
+          style={{
+            backgroundColor: '#EE3536',
+            left: 0,
+            top: 0,
+            touchAction: 'none',
+            willChange: 'transform',
+            transform: 'translate3d(0,0,0)'
+          }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -374,8 +375,9 @@ const StableChatHead: React.FC = () => {
       >
         {/* Pulse ring around the bubble */}
         <div 
-          className="absolute inset-0 rounded-full border-2 border-emerald-400 opacity-75"
+          className="absolute inset-0 rounded-full border-2 opacity-75"
           style={{
+            borderColor: '#EE3536',
             animation: 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
           }}
         />
