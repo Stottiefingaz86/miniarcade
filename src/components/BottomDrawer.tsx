@@ -183,9 +183,14 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         {/* Header - show when not in blackjack mode (including when minimized) */}
         {!showBlackjack && (
           <div className="flex items-center justify-between px-6 pb-4">
-            <h2 className="text-2xl font-bold text-gray-800">
-              Mini Casino
-            </h2>
+            <div className="flex flex-col">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">
+                🎰 MINI CASINO 🎰
+              </h2>
+              <div className="text-sm text-gray-600 font-medium">
+                Balance: <span className="text-green-600 font-bold">$542.00</span>
+              </div>
+            </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => alert('Settings clicked!')}
