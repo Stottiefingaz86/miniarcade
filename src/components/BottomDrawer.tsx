@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { X, ArrowLeft } from 'lucide-react'
+import { X, ArrowLeft, Settings } from 'lucide-react'
 import blackjackImage from './blackjack.png'
 import blackjackCardImage from './blackjack_card.png'
 import diamondsImage from './diamonds.png'
@@ -186,46 +186,50 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
             <h2 className="text-2xl font-bold text-gray-800">
               Mini Casino
             </h2>
-            <button
-              onClick={onClose}
-              className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
-            >
-              <X size={20} className="text-gray-600" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => alert('Settings clicked!')}
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
+              >
+                <Settings size={20} className="text-gray-600" />
+              </button>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
+              >
+                <X size={20} className="text-gray-600" />
+              </button>
+            </div>
           </div>
         )}
         
         {/* Games Carousel - only show when not in blackjack mode and not minimized */}
         {!showBlackjack && !isMinimized && (
           <div className="pb-6">
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              {/* Create pairs of games for 2x2 layout */}
-              {Array.from({ length: Math.ceil(casinoGames.length / 2) }, (_, pairIndex) => (
-                <div key={pairIndex} className={`flex flex-col gap-4 flex-shrink-0 ${pairIndex === 0 ? 'ml-6' : ''} ${pairIndex === Math.ceil(casinoGames.length / 2) - 1 ? 'mr-6' : ''}`}>
-                  {casinoGames.slice(pairIndex * 2, pairIndex * 2 + 2).map((game) => {
-                    return (
-                      <button
-                        key={game.id}
-                        className="relative bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-32 h-32 overflow-hidden"
-                        onClick={() => {
-                          if (game.id === 'blackjack') {
-                            setShowBlackjack(true)
-                          } else {
-                            alert(`${game.name} clicked! ${game.description}`)
-                          }
-                        }}
-                      >
-                        {/* Full image that fills the entire tile */}
-                        <img 
-                          src={game.image} 
-                          alt={game.name}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </button>
-                    )
-                  })}
-                </div>
-              ))}
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {/* Single row of all games */}
+              {casinoGames.map((game) => {
+                return (
+                  <button
+                    key={game.id}
+                    className="relative bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group w-32 h-32 overflow-hidden flex-shrink-0"
+                    onClick={() => {
+                      if (game.id === 'blackjack') {
+                        setShowBlackjack(true)
+                      } else {
+                        alert(`${game.name} clicked! ${game.description}`)
+                      }
+                    }}
+                  >
+                    {/* Full image that fills the entire tile */}
+                    <img 
+                      src={game.image} 
+                      alt={game.name}
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  </button>
+                )
+              })}
             </div>
           </div>
         )}
