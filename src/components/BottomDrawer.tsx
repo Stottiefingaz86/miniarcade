@@ -179,14 +179,16 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-40 flex items-end">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/50"
+        className="absolute inset-0 bg-black/50 transition-opacity duration-300"
         onClick={onClose}
       />
       
       {/* Drawer */}
       <div 
         ref={drawerRef}
-        className={`relative w-full rounded-t-3xl shadow-2xl overflow-hidden transition-transform duration-200 ${showBlackjack ? 'h-auto' : 'max-h-[85vh] bg-white'}`}
+        className={`relative w-full rounded-t-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out transform ${showBlackjack ? 'h-auto' : 'max-h-[85vh] bg-white'} ${
+          isOpen ? 'translate-y-0' : 'translate-y-full'
+        }`}
         style={{ 
           touchAction: 'none',
           backgroundColor: showBlackjack ? '#335846' : undefined
@@ -240,13 +242,13 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
         {/* Games Carousel - only show when not in blackjack mode and not minimized */}
         {!showBlackjack && !isMinimized && (
           <div className="pb-6">
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 px-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {/* Single row of all games */}
               {casinoGames.map((game) => {
                 return (
                   <button
                     key={game.id}
-                    className="relative w-24 h-44 rounded-lg overflow-hidden transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group flex-shrink-0 shadow-sm hover:shadow-lg"
+                    className="relative w-20 h-36 rounded-lg overflow-hidden transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group flex-shrink-0 shadow-sm hover:shadow-lg"
                     onClick={() => {
                       if (game.id === 'blackjack') {
                         setShowBlackjack(true)
