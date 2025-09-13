@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { X, Zap, Target, Bomb, Circle, Coins, Grid3X3, ArrowLeft } from 'lucide-react'
+import { X, ArrowLeft } from 'lucide-react'
 import blackjackImage from './blackjack.png'
+import blackjackCardImage from './blackjack_card.png'
+import diamondsImage from './diamonds.png'
+import diceImage from './dice.png'
+import minesImage from './mines.png'
+import plinkoImage from './plinko.png'
+import wheelImage from './wheel.png'
 
 interface BottomDrawerProps {
   isOpen: boolean
@@ -16,56 +22,49 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
   const [dragStartTime, setDragStartTime] = useState(0)
   const [isMinimized, setIsMinimized] = useState(false)
   
-  // Casino games data - Blackjack first
+  // Casino games data - Only games with PNG images
   const casinoGames = [
     {
       id: 'blackjack',
       name: 'Blackjack',
-      icon: Coins,
+      image: blackjackCardImage,
       color: 'from-emerald-500 to-teal-500',
       description: 'Beat the dealer with 21!'
     },
     {
-      id: 'crash',
-      name: 'Crash',
-      icon: Zap,
-      color: 'from-red-500 to-orange-500',
-      description: 'Watch the multiplier rise and cash out before it crashes!'
+      id: 'diamonds',
+      name: 'Diamonds',
+      image: diamondsImage,
+      color: 'from-blue-500 to-cyan-500',
+      description: 'Find the diamonds!'
     },
     {
-      id: 'plinko',
-      name: 'Plinko',
-      icon: Target,
-      color: 'from-blue-500 to-cyan-500',
-      description: 'Drop the ball and watch it bounce to your fortune!'
+      id: 'dice',
+      name: 'Dice',
+      image: diceImage,
+      color: 'from-purple-500 to-pink-500',
+      description: 'Roll the dice!'
     },
     {
       id: 'mines',
       name: 'Mines',
-      icon: Bomb,
+      image: minesImage,
       color: 'from-yellow-500 to-orange-500',
       description: 'Find the gems while avoiding the mines!'
     },
     {
-      id: 'roulette',
-      name: 'Roulette',
-      icon: Circle,
+      id: 'plinko',
+      name: 'Plinko',
+      image: plinkoImage,
       color: 'from-green-500 to-emerald-500',
+      description: 'Drop the ball and watch it bounce to your fortune!'
+    },
+    {
+      id: 'wheel',
+      name: 'Wheel',
+      image: wheelImage,
+      color: 'from-red-500 to-orange-500',
       description: 'Spin the wheel and bet on your lucky number!'
-    },
-    {
-      id: 'slots',
-      name: 'Slots',
-      icon: Coins,
-      color: 'from-purple-500 to-pink-500',
-      description: 'Pull the lever and match the symbols!'
-    },
-    {
-      id: 'keno',
-      name: 'Keno',
-      icon: Grid3X3,
-      color: 'from-indigo-500 to-blue-500',
-      description: 'Pick your numbers and hope for the best!'
     }
   ]
 
@@ -204,7 +203,6 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
               {Array.from({ length: Math.ceil(casinoGames.length / 2) }, (_, pairIndex) => (
                 <div key={pairIndex} className={`flex flex-col gap-4 flex-shrink-0 ${pairIndex === 0 ? 'ml-6' : ''} ${pairIndex === Math.ceil(casinoGames.length / 2) - 1 ? 'mr-6' : ''}`}>
                   {casinoGames.slice(pairIndex * 2, pairIndex * 2 + 2).map((game) => {
-                    const IconComponent = game.icon
                     return (
                       <button
                         key={game.id}
@@ -220,9 +218,13 @@ const BottomDrawer: React.FC<BottomDrawerProps> = ({ isOpen, onClose }) => {
                         {/* Background gradient */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-5 rounded-2xl group-hover:opacity-10 transition-opacity duration-200`} />
                         
-                        {/* Icon container */}
-                        <div className={`relative w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br ${game.color} flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200`}>
-                          <IconComponent size={24} className="text-white" />
+                        {/* Image container */}
+                        <div className={`relative w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br ${game.color} flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow duration-200 overflow-hidden`}>
+                          <img 
+                            src={game.image} 
+                            alt={game.name}
+                            className="w-8 h-8 object-contain"
+                          />
                         </div>
                         
                         {/* Game name */}
